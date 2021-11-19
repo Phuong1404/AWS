@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IStudent</title>
+
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="/assets/css/app.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="main">
+        <!-- HEADER -->
+        <div class="header sticky-top row py-1 bg-primary bg-gradient text-white">
+            <div class="header__left col-2 text-center">
+                <img class="header-left__logo" src="/assets/img/logo.png" alt="logo">
+                <span class="header-left__name align-middle">Student</span>
+            </div>
+            <div class="header__right col-10 d-flex justify-content-between">
+                <button type="button" class="btn text-white btn__header">
+                    <i class='bx bx-list-ul'></i>
+                </button>
+                <button type="button" class="btn text-white btn__header">
+                    <i class='bx bx-log-in-circle align-middle'></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </div>
+        <!-- END HEADER -->
+
+        <div class="row text-white mx-0">
+            <!-- MENU -->
+            <div class="menu col-2 px-0 border-0">
+                <div class="user__info row">
+                    <div class="col-5">
+                        <img class="user-info__logo" src="/assets/img/user-logo.png" alt="user-logo">
+                    </div>
+                    <div class="col-7 align-self-center ">
+                        <div class="row-6">
+                            Hi! Admin
+                        </div>
+                        <div class="row-6">
+                            <i class='bx bxs-circle bx-flashing' style='color:#00ff0d'> Online </i>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mx-0 p-3 bg-dark opacity-75">
+                    MENU
+                </div>
+                <div class="list-group ">
+                    <a href="#" class="list-group-item list-group-item-action menu__item">
+                        <i class='bx bx-home-alt'></i>
+                        Trang Chủ
+                    </a>
+
+                    <button href="#" class="menu__student list-group-item list-group-item-action menu__item">
+                        <div>
+                            <i class='bx bx-user-circle'></i>
+                            Sinh Viên
+                        </div>
+                        <ul class="d-none menu-student__list p-0">
+                            <a href="#" class="text-white d-block text-decoration-none p-2 mt-2">
+                                <li>
+                                    <i class='bx bx-info-circle'></i>
+                                    Thông tin sinh viên
+                                </li>
+                            </a>
+                            <a href="#" class="text-white d-block text-decoration-none p-2">
+                                <li>
+                                    <i class='bx bx-book-content'></i>
+                                    Điểm số
+                                </li>
+                            </a>
+                        </ul>
+                    </button>
+                    <a href="#" class="list-group-item list-group-item-action menu__item">
+                        <i class='bx bxs-book'></i>
+                        Môn Học
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action menu__item">
+                        <i class='bx bxs-graduation'></i>
+                        Lớp Học
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action menu__item">
+                        <i class='bx bx-user-plus'></i>
+                        Giảng Viên
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action menu__item">
+                        <i class='bx bx-code'></i>
+                        Thông Tin Tài Khoản
+                    </a>
+                </div>
+            </div>
+            <!-- END MENU -->
+
+            <!-- STUDENT INFORMATION -->
+            <div class="col-10 px-0 position-relative">
+                <div class="header-name text-black fw-bold fs-5 p-2">
+                    <i class='bx bx-error-circle' style='color:#0096ff'></i>
+                    THÔNG TIN SINH VIÊN
+                </div>
+
+                <div class="my-4 mx-3 d-flex justify-content-between">
+                    <!-- Search -->
+                    <div class="input-group mb-3 search-sub">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">Mã sinh viên</button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Mã sinh viên</a></li>
+                            <li><a class="dropdown-item" href="#">Tên sinh viên</a></li>
+                            <li><a class="dropdown-item" href="#">Mã lớp</a></li>
+                            <li><a class="dropdown-item" href="#">Quê quán</a></li>
+                        </ul>
+                        <input type="text" class="form-control" aria-label="Text input with dropdown button"
+                            placeholder="Nhập thông tin">
+                        <button type="submit" class="btn btn-primary"><i class='bx bx-search-alt'></i></button>
+                    </div>
+                    <!-- End Search -->
+
+                    <!-- Export File -->
+                    <div class="export-file">
+                        <!-- Button ADD modal -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#add-modal"><i class='bx bx-plus bx-tada'></i> Thêm
+                        </button>
+
+                        <!-- ADD Modal -->
+                        <div class="modal fade" id="add-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-black" id="exampleModalLabel">Thêm Sinh Viên</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body text-black">
+                                        <form>
+                                            <div class="mb-3">
+                                                <label for="sv_mssv" class="form-label">Mã sinh viên</label>
+                                                <input type="text" class="form-control" id="sv_mssv">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="sv_name" class="form-label">Họ và tên</label>
+                                                <input type="text" class="form-control" id="sv_name">
+                                            </div>
+                                            <div class="d-flex my-3">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                                        id="sv_boy" checked>
+                                                    <label class="form-check-label" for="sv_boy">
+                                                        Nam
+                                                    </label>
+                                                </div>
+                                                <div class="form-check ms-3">
+                                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                                        id="sv_girl">
+                                                    <label class="form-check-label" for="sv_girl">
+                                                        Nữ
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="sv_birth-day" class="form-label">Ngày sinh</label>
+                                                <input type="date" class="form-control" id="sv_birth-day">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="sv_hometown" class="form-label">Quê quán</label>
+                                                <input type="text" class="form-control" id="sv_hometown">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="sv_class" class="form-label">Lớp</label>
+                                                <input type="text" class="form-control" id="sv_class">
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger"
+                                                    data-bs-dismiss="modal">Thoát</button>
+                                                <button type="submit" class="btn btn-primary">Lưu</button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="button" class="btn btn-danger"><i
+                                class='bx bxs-file-pdf bx-flip-horizontal bx-tada'></i> Xuất PDF</button>
+                    </div>
+                    <!-- End Export File -->
+                </div>
+
+                <div class="table-responsive mx-3">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Mã sinh viên</th>
+                                <th scope="col">Họ và tên</th>
+                                <th scope="col">Giới tính</th>
+                                <th scope="col">Ngày sinh</th>
+                                <th scope="col">Quê quán</th>
+                                <th scope="col">Lớp</th>
+                                <th scope="col">Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>19110441</td>
+                                <td>Trương Ngọc Phương</td>
+                                <td>Nam</td>
+                                <td>08/07/2001</td>
+                                <td>An Giang</td>
+                                <td>191101B</td>
+                                <td class="text-center">
+                                    <!-- Button EDIT-->
+                                    <button type="button" class="btn btn-outline-danger py-1" data-bs-toggle="modal"
+                                        data-bs-target="#edit-modal"><i class='bx bx-pen'></i> Sửa
+                                    </button>
+
+                                    <!-- EDIT Modal -->
+                                    <div class="modal fade text-start" id="edit-modal" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title text-black" id="exampleModalLabel">Cập nhật
+                                                        Sinh
+                                                        Viên</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body text-black">
+                                                    <form>
+                                                        <div class="mb-3">
+                                                            <label for="sv_mssv" class="form-label">Mã sinh viên</label>
+                                                            <input type="text" class="form-control" id="sv_mssv">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="sv_name" class="form-label">Họ và tên</label>
+                                                            <input type="text" class="form-control" id="sv_name">
+                                                        </div>
+                                                        <div class="d-flex my-3">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="flexRadioDefault" id="sv_boy" checked>
+                                                                <label class="form-check-label" for="sv_boy">
+                                                                    Nam
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-check ms-3">
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="flexRadioDefault" id="sv_girl">
+                                                                <label class="form-check-label" for="sv_girl">
+                                                                    Nữ
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="sv_birth-day" class="form-label">Ngày
+                                                                sinh</label>
+                                                            <input type="date" class="form-control" id="sv_birth-day">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="sv_hometown" class="form-label">Quê quán</label>
+                                                            <input type="text" class="form-control" id="sv_hometown">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="sv_class" class="form-label">Lớp</label>
+                                                            <input type="text" class="form-control" id="sv_class">
+                                                        </div>
+
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger"
+                                                                data-bs-dismiss="modal">Thoát</button>
+                                                            <button type="submit" class="btn btn-primary">Lưu</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Button DELETE -->
+                                    <button type="button" class="btn btn-outline-warning py-1" data-bs-toggle="modal"
+                                        data-bs-target="#staticBackdrop">
+                                        <i class='bx bx-x'></i>Xóa
+                                    </button>
+
+                                    <!-- DELETE Modal -->
+                                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+                                        data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="staticBackdropLabel">Xóa dữ liệu</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body text-start">
+                                                    Bạn muốn xóa Sinh Viên... ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger"
+                                                        data-bs-dismiss="modal">Không</button>
+                                                    <button type="button" class="btn btn-primary">Xác nhận</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>19110441</td>
+                                <td>Trương Ngọc Phương</td>
+                                <td>Nam</td>
+                                <td>08/07/2001</td>
+                                <td>An Giang</td>
+                                <td>191101B</td>
+                                <td class="text-center">
+                                    <button type="submit" class="btn btn-outline-danger py-1">Sửa</button>
+                                    <button type="submit" class="btn btn-outline-warning py-1">Xóa</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>19110441</td>
+                                <td>Trương Ngọc Phương</td>
+                                <td>Nam</td>
+                                <td>08/07/2001</td>
+                                <td>An Giang</td>
+                                <td>191101B</td>
+                                <td class="text-center">
+                                    <button type="submit" class="btn btn-outline-danger py-1">Sửa</button>
+                                    <button type="submit" class="btn btn-outline-warning py-1">Xóa</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">4</th>
+                                <td>19110441</td>
+                                <td>Trương Ngọc Phương</td>
+                                <td>Nam</td>
+                                <td>08/07/2001</td>
+                                <td>An Giang</td>
+                                <td>191101B</td>
+                                <td class="text-center">
+                                    <button type="submit" class="btn btn-outline-danger py-1">Sửa</button>
+                                    <button type="submit" class="btn btn-outline-warning py-1">Xóa</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled">
+                            <a class="page-link">Trang trước</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Trang sau</a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- FOOTER -->
+                <footer class="footer py-3 mx-0 text-center bg-dark opacity-75">
+                    Copyright ISTUDENT © 2021
+                </footer>
+                <!-- END FOOTER -->
+            </div>
+            <!-- END STUDENT INFORMATION -->
+
+
+
+        </div>
+
+
+
+
+
+    </div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+    integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+    integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+    crossorigin="anonymous"></script>
+<script src="https://unpkg.com/boxicons@2.0.9/dist/boxicons.js"></script>
+<script src="/assets/js/app.js"></script>
+
+</html>
