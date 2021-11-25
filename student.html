@@ -140,7 +140,7 @@
                                             aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body text-black">
-                                        <form>
+                                        <div>
                                             <div class="mb-3">
                                                 <label for="sv_mssv" class="form-label">Mã sinh viên</label>
                                                 <input type="text" class="form-control" id="sv_mssv">
@@ -181,52 +181,16 @@
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger"
                                                     data-bs-dismiss="modal">Thoát</button>
-                                                <button type="submit" class="btn btn-primary">Lưu</button>
+                                                <button type="submit" class="btn btn-primary" onclick="Them()" data-bs-dismiss="modal">Lưu</button>
                                             </div>
-                                        </form>
+                                        </div>
                                     </div>
 
                                 </div>
                             </div>
                         </div>
-
-                        <button type="button" class="btn btn-danger"><i
-                                class='bx bxs-file-pdf bx-flip-horizontal bx-tada'></i> Xuất PDF</button>
-                    </div>
-                    <!-- End Export File -->
-                </div>
-
-                <div class="table-responsive mx-3">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Mã sinh viên</th>
-                                <th scope="col">Họ và tên</th>
-                                <th scope="col">Giới tính</th>
-                                <th scope="col">Ngày sinh</th>
-                                <th scope="col">Quê quán</th>
-                                <th scope="col">Lớp</th>
-                                <th scope="col">Hành động</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>19110441</td>
-                                <td>Trương Ngọc Phương</td>
-                                <td>Nam</td>
-                                <td>08/07/2001</td>
-                                <td>An Giang</td>
-                                <td>191101B</td>
-                                <td class="text-center">
-                                    <!-- Button EDIT-->
-                                    <button type="button" class="btn btn-outline-danger py-1" data-bs-toggle="modal"
-                                        data-bs-target="#edit-modal"><i class='bx bx-pen'></i> Sửa
-                                    </button>
-
-                                    <!-- EDIT Modal -->
-                                    <div class="modal fade text-start" id="edit-modal" tabindex="-1"
+                        <!--///////////////////////////////////////////////////////////////////////// -->
+                        <div class="modal fade text-start" id="edit-modal" tabindex="-1"
                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -241,23 +205,23 @@
                                                     <form>
                                                         <div class="mb-3">
                                                             <label for="sv_mssv" class="form-label">Mã sinh viên</label>
-                                                            <input type="text" class="form-control" id="sv_mssv">
+                                                            <input type="text" class="form-control" disabled id="sv_mssv1">
                                                         </div>
                                                         <div class="mb-3">
                                                             <label for="sv_name" class="form-label">Họ và tên</label>
-                                                            <input type="text" class="form-control" id="sv_name">
+                                                            <input type="text" class="form-control" id="sv_name1">
                                                         </div>
                                                         <div class="d-flex my-3">
                                                             <div class="form-check">
                                                                 <input class="form-check-input" type="radio"
-                                                                    name="flexRadioDefault" id="sv_boy" checked>
+                                                                    name="flexRadioDefault" id="sv_boy1" checked>
                                                                 <label class="form-check-label" for="sv_boy">
                                                                     Nam
                                                                 </label>
                                                             </div>
                                                             <div class="form-check ms-3">
                                                                 <input class="form-check-input" type="radio"
-                                                                    name="flexRadioDefault" id="sv_girl">
+                                                                    name="flexRadioDefault" id="sv_girl1">
                                                                 <label class="form-check-label" for="sv_girl">
                                                                     Nữ
                                                                 </label>
@@ -266,37 +230,30 @@
                                                         <div class="mb-3">
                                                             <label for="sv_birth-day" class="form-label">Ngày
                                                                 sinh</label>
-                                                            <input type="date" class="form-control" id="sv_birth-day">
+                                                            <input type="date" class="form-control" id="sv_birth-day1">
                                                         </div>
                                                         <div class="mb-3">
                                                             <label for="sv_hometown" class="form-label">Quê quán</label>
-                                                            <input type="text" class="form-control" id="sv_hometown">
+                                                            <input type="text" class="form-control" id="sv_hometown1">
                                                         </div>
                                                         <div class="mb-3">
                                                             <label for="sv_class" class="form-label">Lớp</label>
-                                                            <input type="text" class="form-control" id="sv_class">
+                                                            <input type="text" class="form-control" id="sv_class1">
                                                         </div>
 
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-danger"
                                                                 data-bs-dismiss="modal">Thoát</button>
-                                                            <button type="submit" class="btn btn-primary">Lưu</button>
+                                                            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Lưu</button>
                                                         </div>
                                                     </form>
                                                 </div>
 
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <!-- Button DELETE -->
-                                    <button type="button" class="btn btn-outline-warning py-1" data-bs-toggle="modal"
-                                        data-bs-target="#staticBackdrop">
-                                        <i class='bx bx-x'></i>Xóa
-                                    </button>
-
-                                    <!-- DELETE Modal -->
-                                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+                         </div>
+                        <!--///////////////////////////////////////////////////////////////////////// -->
+                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
                                         data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
                                         aria-hidden="true">
                                         <div class="modal-dialog">
@@ -316,48 +273,31 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>
+                         </div>
+                         <!--///////////////////////////////////////////////////////////////////////// -->
+                         
+                        <button type="button" class="btn btn-danger" onclick="LoadData()"><i
+                                class='bx bxs-file-pdf bx-flip-horizontal bx-tada'></i> Load data</button>
+                    </div>
+                    <!-- End Export File -->
+                </div>
+
+                <div class="table-responsive mx-3">
+                    <table class="table table-bordered">
+                        <thead>
                             <tr>
-                                <th scope="row">2</th>
-                                <td>19110441</td>
-                                <td>Trương Ngọc Phương</td>
-                                <td>Nam</td>
-                                <td>08/07/2001</td>
-                                <td>An Giang</td>
-                                <td>191101B</td>
-                                <td class="text-center">
-                                    <button type="submit" class="btn btn-outline-danger py-1">Sửa</button>
-                                    <button type="submit" class="btn btn-outline-warning py-1">Xóa</button>
-                                </td>
+                                <th scope="col">ID</th>
+                                <th scope="col">Mã sinh viên</th>
+                                <th scope="col">Họ và tên</th>
+                                <th scope="col">Giới tính</th>
+                                <th scope="col">Ngày sinh</th>
+                                <th scope="col">Quê quán</th>
+                                <th scope="col">Lớp</th>
+                                <th scope="col">Hành động</th>
                             </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>19110441</td>
-                                <td>Trương Ngọc Phương</td>
-                                <td>Nam</td>
-                                <td>08/07/2001</td>
-                                <td>An Giang</td>
-                                <td>191101B</td>
-                                <td class="text-center">
-                                    <button type="submit" class="btn btn-outline-danger py-1">Sửa</button>
-                                    <button type="submit" class="btn btn-outline-warning py-1">Xóa</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">4</th>
-                                <td>19110441</td>
-                                <td>Trương Ngọc Phương</td>
-                                <td>Nam</td>
-                                <td>08/07/2001</td>
-                                <td>An Giang</td>
-                                <td>191101B</td>
-                                <td class="text-center">
-                                    <button type="submit" class="btn btn-outline-danger py-1">Sửa</button>
-                                    <button type="submit" class="btn btn-outline-warning py-1">Xóa</button>
-                                </td>
-                            </tr>
+                        </thead>
+                        <tbody id="ROW1">
+                            
                         </tbody>
                     </table>
                 </div>
@@ -404,5 +344,102 @@
     crossorigin="anonymous"></script>
 <script src="https://unpkg.com/boxicons@2.0.9/dist/boxicons.js"></script>
 <script src="/assets/js/app.js"></script>
+<script>
+    function LoadData()
+    {
+        $.ajax({
+            type: "GET",
+            url: "http://3.226.249.16:8080/sinhvien/", //Tên servlet
+            success:function (result){
+                console.log(result)
+                var row = document.getElementById("ROW1")
+                row.innerHTML = null;
+                var htmlString=``;
+                let total=result.length
+                for(let item in result)
+                {
+                    var total1=item-'-1'
+                    let total2=total-item-1
+                htmlString+=`<tr>
+                                <th scope="row">`+(total1)+`</th>
+                                <td>`+result[total2].MaSV+`</td>
+                                <td>`+result[total2].TenSV+`</td>
+                                <td>`+result[total2].GioiTinh+`</td>
+                                <td>`+result[total2].NgaySinh+`</td>
+                                <td>`+result[total2].QueQuan+`</td>
+                                <td>`+result[total2].MaLop+`</td>
+                                <td class="text-center">
+                                    <!-- Button EDIT-->
+                                    <button type="button" class="btn btn-outline-danger py-1" onclick="Load1('`+result[total2].MaSV+`')" data-bs-toggle="modal"
+                                        data-bs-target="#edit-modal"><i class='bx bx-pen'></i> Sửa
+                                    </button>
 
+                                    <!-- EDIT Modal -->
+                                    
+
+                                    <!-- Button DELETE -->
+                                    <button type="button" class="btn btn-outline-warning py-1" data-bs-toggle="modal"
+                                        data-bs-target="#staticBackdrop">
+                                        <i class='bx bx-x'></i>Xóa
+                                    </button>
+
+                                    <!-- DELETE Modal -->
+                                    
+                                </td>
+                            </tr>`
+                            $('#ROW1').html(htmlString);
+                        }
+            }
+        })
+    }
+
+    $(document).ready(function(){
+        LoadData()
+    })
+
+    function Them()
+    {
+        var MSSV=document.getElementById('sv_mssv').value
+        var Name=document.getElementById('sv_name').value
+        var Sex=''
+        if(document.getElementById('sv_boy').checked==true)
+        {
+            Sex='Nam'
+        }
+        else{
+            Sex='Nữ'
+        }
+        var BirthDay=document.getElementById('sv_birth-day').value
+        var Que=document.getElementById('sv_hometown').value
+        var Lop=document.getElementById('sv_class').value
+        
+        $.ajax({
+            type: "POST",
+            url: "http://3.226.249.16:8080/SinhVien", //Tên servlet
+            data: {"MaSV":MSSV,"TenSV":Name,"GioiTinh":Sex,"NgaySinh":BirthDay,"QueQuan":Que,"MaLop":Lop}
+        })
+    }
+        function Load1(data)
+    {
+        $.ajax({
+            type: "Get",
+            url: "http://3.226.249.16:8080/sinhvien/"+data, //Tên servlet
+            success:function (result){
+                console.log(result)
+                if(result[0].GioiTinh=='Nam')
+                {
+                    document.getElementById('sv_boy1').checked=true
+                }
+                else{
+                    document.getElementById('sv_girl1').checked=false
+                }
+                document.getElementById('sv_mssv1').value=result[0].MaSV
+                document.getElementById('sv_name1').value=result[0].TenSV
+                document.getElementById('sv_birth-day1').value=result[0].NgaySinh
+                document.getElementById('sv_hometown1').value=result[0].QueQuan
+                document.getElementById('sv_class1').value=result[0].MaLop
+            }
+        })
+    }
+</script>
 </html>

@@ -276,7 +276,7 @@
     {
         $.ajax({
             type: "GET",
-            url: "http://3.237.203.18:8080/khoa", //Tên servlet
+            url: "http://3.93.40.100:8080/khoa", //Tên servlet
             success:function (result){
                 console.log(result)
                 var row = document.getElementById("row1")
@@ -320,7 +320,7 @@
         var b=document.getElementById("TenKhoa").value;
         $.ajax({
             type: "POST",
-            url: "http://3.237.203.18:8080/khoa", //Tên servlet
+            url: "http://3.93.40.100:8080/khoa", //Tên servlet
             data: {"MaKhoa":a,"TenKhoa":b},
         })
     }
@@ -331,7 +331,7 @@
     {
         $.ajax({
             type: "Get",
-            url: "http://3.237.203.18:8080/khoa/"+data, //Tên servlet
+            url: "http://3.93.40.100:8080/khoa/"+data, //Tên servlet
             success:function (result){
                 document.getElementById('MaKhoa1').value=''
                 document.getElementById('TenKhoa1').value=''
@@ -361,7 +361,7 @@
         var b=document.getElementById("TenKhoa1").value;
         $.ajax({
             type: "PUT",
-            url: "http://3.237.203.18:8080/khoa/"+a, //Tên servlet
+            url: "http://3.93.40.100:8080/khoa/"+a, //Tên servlet
             data: {"TenKhoa":b}
         })
     }
@@ -369,7 +369,7 @@
     {
         $.ajax({
             type: "Delete",
-            url: "http://3.237.203.18:8080/khoa/"+data, //Tên servlet
+            url: "http://3.93.40.100:8080/khoa/"+data, //Tên servlet
         })
     }
 </script>

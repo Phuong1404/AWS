@@ -102,7 +102,7 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title text-black" id="exampleModalLabel">Thêm Sinh Viên</h5>
+                                        <h5 class="modal-title text-black" id="exampleModalLabel">Thêm Lớp</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
@@ -134,6 +134,61 @@
                                 </div>
                             </div>
              </div>
+             <div class="modal fade text-start" id="edit-modal" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true" >
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title text-black" id="exampleModalLabel">Cập nhật lớp</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body text-black">
+                                                    <div>
+                                                        <div class="mb-3">
+                                                            <label for="sv_mssv" class="form-label">Mã lớp</label>
+                                                            <input type="text" class="form-control" disabled id="MaLop1">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="sv_name" class="form-label">Tên lớp</label>
+                                                            <input type="text" class="form-control" id="TenLop1">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="sv_name" class="form-label">Tên Khoa</label>
+                                                            <select class="form-control select2" id="Brand2" style="width: 100%;">
+                                                                
+                                                            </select>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger"
+                                                                data-bs-dismiss="modal">Thoát</button>
+                                                            <button onclick="Sua()" data-bs-dismiss="modal" class="btn btn-primary">Lưu</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+            </div>
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+                                        data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="staticBackdropLabel">Xóa dữ liệu</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body text-start" style="color: black;" id="Mess">
+                                                    
+                                                </div>
+                                                <div class="modal-footer" id="button">
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+        </div>
             <!-- CLASS -->
             <div class="col-10 px-0 position-relative">
                 <div class="header-name text-black fw-bold fs-5 p-2">
@@ -231,7 +286,7 @@
     {
         $.ajax({
             type: "GET",
-            url: "http://3.237.203.18:8080/khoa", //Tên servlet
+            url: "http://3.93.40.100:8080/khoa", //Tên servlet
             success:function (result){
                 console.log(result)
                 var row = document.getElementById("Brand1")
@@ -253,7 +308,7 @@
     {
         $.ajax({
             type: "GET",
-            url: "http://3.237.203.18:8080/lop", //Tên servlet
+            url: "http://3.93.40.100:8080/lop", //Tên servlet
             success:function (result){
                 console.log(result)
                 var row = document.getElementById("row1")
@@ -271,8 +326,10 @@
                             <td>`+result[total2].TenLop+`</td>
                             <td>`+result[total2].MaKhoa+`</td>
                             <td class="text-center">
-                                <button type="submit" class="btn btn-outline-danger py-1">Sửa</button>
-                                <button type="submit" class="btn btn-outline-warning py-1">Xóa</button>
+                                <button type="submit" data-bs-toggle="modal"
+                                        data-bs-target="#edit-modal" onclick="Load1('`+result[total2].MaLop+`')" class="btn btn-outline-danger py-1">Sửa</button>
+                                <button type="submit" class="btn btn-outline-warning py-1" onclick="Load2('`+result[total2].MaLop+`')" data-bs-toggle="modal"
+                                        data-bs-target="#staticBackdrop">Xóa</button>
                             </td>
                           </tr>`
                 }
@@ -289,8 +346,71 @@
         var b=document.getElementById("TenLop").value;
         $.ajax({
             type: "POST",
-            url: "http://3.237.203.18:8080/Lop", //Tên servlet
+            url: "http://3.93.40.100:8080/Lop", //Tên servlet
             data: {"MaLop":a,"TenLop":b,"MaKhoa":Khoa}
+        })
+    }
+    function Load1(data)
+    {
+        var a=''
+        $.ajax({
+            type: "Get",
+            url: "http://3.93.40.100:8080/lop/"+data, //Tên servlet
+            success:function (result){
+                document.getElementById('MaLop1').value=''
+                document.getElementById('TenLop1').value=''
+                document.getElementById('MaLop1').value=result[0].MaLop
+                document.getElementById('TenLop1').value=result[0].TenLop
+                a=document.getElementById("Brand2").value=result[0].MaKhoa
+                $.ajax({
+                    type: "GET",
+                    url: "http://3.93.40.100:8080/khoa", //Tên servlet
+                    success:function (result){
+                    console.log(result)
+                    var row = document.getElementById("Brand2")
+                    row.innerHTML = null;
+                    var htmlString=``;
+                    for(let item in result)
+                    {
+                        htmlString+=`<option value="`+result[item].MaKhoa+`">`+result[item].TenKhoa+`</option>`
+                    }
+                    row.innerHTML=htmlString
+                    document.getElementById("Brand2").value=a
+                    
+                }
+             })
+            }
+        })
+
+    }
+    function Sua()
+    {
+        var Khoa=$("#Brand2").find(":selected").val();
+        var a=document.getElementById("MaLop1").value;
+        var b=document.getElementById("TenLop1").value;
+        $.ajax({
+            type: "PUT",
+            url: "http://3.93.40.100:8080/lop/"+a, //Tên servlet
+            data: {"TenLop":b,"MaKhoa":Khoa}
+        })
+    }
+    function Load2(data)
+    {
+        var row = document.getElementById("Mess")
+        row.innerHTML = null;
+        row.innerHTML="Bạn có chắc muốn xóa lớp "+ data;
+        var row1 = document.getElementById("button")
+        row1.innerHTML = null;
+        row1.innerHTML = `<button type="button" class="btn btn-danger"
+                                                        data-bs-dismiss="modal">Không</button>
+                          <button type="button" class="btn btn-primary" onclick="Xoa('`+data+`')" data-bs-dismiss="modal">Xác nhận</button>`
+
+    }
+    function Xoa(data)
+    {
+        $.ajax({
+            type: "Delete",
+            url: "http://3.93.40.100:8080/lop/"+data, //Tên servlet
         })
     }
 </script>
