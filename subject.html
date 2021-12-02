@@ -104,7 +104,105 @@
                     <i class='bx bxs-book' style='color:#0096ff'></i>
                     MÔN HỌC
                 </div>
+                <div class="modal fade" id="add-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-black" id="exampleModalLabel">Thêm Môn Học</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body text-black">
+                                        <div>
+                                            <div class="mb-3">
+                                                <label for="sv_mssv" class="form-label">Mã Môn Học</label>
+                                                <input type="text" class="form-control" id="mamon">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="sv_name" class="form-label">Tên Môn Học</label>
+                                                <input type="text" class="form-control" id="tenmon">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="sv_birth-day" class="form-label">Số Tín Chỉ</label>
+                                                <input type="number" class="form-control" id="tinchi">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="sv_hometown" class="form-label">Số Tiết</label>
+                                                <input type="number" class="form-control" id="sotiet">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger"
+                                                    data-bs-dismiss="modal">Thoát</button>
+                                                <button type="submit" class="btn btn-primary" onclick="Them()" data-bs-dismiss="modal">Lưu</button>
+                                            </div>
+                                        </div>
+                                    </div>
 
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ////////////////////////////////////////////////// -->
+                        <div class="modal fade text-start" id="edit-modal" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title text-black" id="exampleModalLabel">Cập nhật
+                                                        Môn Học</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body text-black">
+                                                    <div>
+                                                        <div class="mb-3">
+                                                            <label for="sv_mssv" class="form-label">Mã Môn Học</label>
+                                                            <input type="text" class="form-control" disabled id="mamon1">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="sv_name" class="form-label">Tên Môn Học</label>
+                                                            <input type="text" class="form-control" id="tenmon1">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="sv_birth-day" class="form-label">Số Tín Chỉ</label>
+                                                            <input type="number" class="form-control" id="tinchi1">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="sv_hometown" class="form-label">Số Tiết</label>
+                                                            <input type="number" class="form-control" id="sotiet1">
+                                                        </div>
+
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger"
+                                                                data-bs-dismiss="modal">Thoát</button>
+                                                            <button onclick="Sua()" class="btn btn-primary" data-bs-dismiss="modal">Lưu</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                         </div>
+                        <!--///////////////////////////////////////////////////////////////////////// -->
+                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+                                        data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title text-black" id="staticBackdropLabel">Xóa dữ liệu</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body text-start text-black" id="Mess">
+
+                                                </div>
+                                                <div class="modal-footer" id="button">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                         </div>
                 <div class="my-4 mx-3 d-flex justify-content-between">
                     <!-- Search -->
                     <div class="input-group mb-3 search-sub">
@@ -122,8 +220,9 @@
 
                     <!-- Export File -->
                     <div class="export-file">
-                        <button type="button" class="btn btn-primary"><i class='bx bx-plus bx-tada' ></i> Thêm </button>
-                        <button type="button" class="btn btn-danger"><i class='bx bxs-file-pdf bx-flip-horizontal bx-tada' ></i> Xuất PDF</button>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#add-modal"><i class='bx bx-plus bx-tada' ></i> Thêm </button>
+                        <button type="button" class="btn btn-danger" onclick="LoadData()"><i class='bx bxs-file-pdf bx-flip-horizontal bx-tada' ></i> Xuất PDF</button>
                     </div>
                     <!-- End Export File -->
                 </div>
@@ -135,56 +234,12 @@
                             <th scope="col">ID</th>
                             <th scope="col">Mã môn học</th>
                             <th scope="col">Tên môn học</th>
-                            <th scope="col">Thời gian</th>
+                            <th scope="col">Tín chỉ</th>
                             <th scope="col">Số tiết</th>
                             <th scope="col">Hành động</th>
                           </tr>
                         </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>ABCXYZ</td>
-                            <td>Điện toán đám mây</td>
-                            <td>180 phút</td>
-                            <td>35</td>
-                            <td class="text-center">
-                                <button type="submit" class="btn btn-outline-danger py-1">Sửa</button>
-                                <button type="submit" class="btn btn-outline-warning py-1">Xóa</button>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>ABCXYZ</td>
-                            <td>Điện toán đám mây</td>
-                            <td>180 phút</td>
-                            <td>35</td>
-                            <td class="text-center">
-                                <button type="submit" class="btn btn-outline-danger py-1">Sửa</button>
-                                <button type="submit" class="btn btn-outline-warning py-1">Xóa</button>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>ABCXYZ</td>
-                            <td>Điện toán đám mây</td>
-                            <td>180 phút</td>
-                            <td>35</td>
-                            <td class="text-center">
-                                <button type="submit" class="btn btn-outline-danger py-1">Sửa</button>
-                                <button type="submit" class="btn btn-outline-warning py-1">Xóa</button>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>ABCXYZ</td>
-                            <td>Điện toán đám mây</td>
-                            <td>180 phút</td>
-                            <td>35</td>
-                            <td class="text-center">
-                                <button type="submit" class="btn btn-outline-danger py-1">Sửa</button>
-                                <button type="submit" class="btn btn-outline-warning py-1">Xóa</button>
-                            </td>
-                          </tr>
+                        <tbody id="ROW1">
                         </tbody>
                       </table>
                 </div>
@@ -231,5 +286,135 @@
     crossorigin="anonymous"></script>
 <script src="https://unpkg.com/boxicons@2.0.9/dist/boxicons.js"></script>
 <script src="/assets/js/app.js"></script>
+<script>
+
+    function LoadData()
+    {
+        $.ajax({
+            type: "GET",
+            url: "http://18.209.157.133:8080/MonHoc/", //Tên servlet
+            success:function (result){
+                console.log(result)
+                var row = document.getElementById("ROW1")
+                row.innerHTML = null;
+                var htmlString=``;
+                let total=result.length
+                for(let item in result)
+                {
+                    var total1=item-'-1'
+                    let total2=total-item-1
+                htmlString+=`<tr>
+                                <th scope="row">`+(total1)+`</th>
+                                <td>`+result[total2].MaMon+`</td>
+                                <td>`+result[total2].TenMon+`</td>
+                                <td>`+result[total2].TinChi+`</td>
+                                <td>`+result[total2].SoTiet+`</td>
+                                <td class="text-center">
+                                    <!-- Button EDIT-->
+                                    <button type="button" class="btn btn-outline-danger py-1" onclick="Load1('`+result[total2].MaMon+`')" data-bs-toggle="modal"
+                                        data-bs-target="#edit-modal"><i class='bx bx-pen'></i> Sửa
+                                    </button>
+
+                                    <!-- EDIT Modal -->
+                                    
+
+                                    <!-- Button DELETE -->
+                                    <button type="button" class="btn btn-outline-warning py-1" data-bs-toggle="modal"
+                                        data-bs-target="#staticBackdrop" onclick="Load2('`+result[total2].MaMon+`')">
+                                        <i class='bx bx-x'></i>Xóa
+                                    </button>
+
+                                    <!-- DELETE Modal -->
+                                    
+                                </td>
+                            </tr>`
+                            $('#ROW1').html(htmlString);
+                        }
+            }
+        })
+    }
+    function CheckLogin()
+    {
+        $.ajax({
+            type: "GET",
+            url: "http://18.209.157.133:8080/getCookie/", //Tên servlet
+            success:function (result){
+                console
+                if(result!='0')
+                {
+                    alert('Đã đăng nhập')
+                }
+                else{
+                    window.location="login.html"
+                }
+            }
+        })
+    }
+    $(document).ready(function(){
+        LoadData()
+        CheckLogin()
+    })
+    
+    function Them()
+    {
+        var MaMon=document.getElementById('mamon').value
+        var TenMon=document.getElementById('tenmon').value
+        var TinChi=document.getElementById('tinchi').value
+        var SoTiet=document.getElementById('sotiet').value
+        
+        $.ajax({
+            type: "POST",
+            url: "http://18.209.157.133:8080/MonHoc", //Tên servlet
+            data: {"MaMon":MaMon,"TenMon":TenMon,"TinChi":TinChi,"SoTiet":SoTiet}
+        })
+    }
+    function Load1(data)
+    {
+        $.ajax({
+            type: "Get",
+            url: "http://18.209.157.133:8080/MonHoc/"+data, //Tên servlet
+            success:function (result){
+                console.log(result)
+                document.getElementById('mamon1').value=result[0].MaMon
+                document.getElementById('tenmon1').value=result[0].TenMon
+                document.getElementById('tinchi1').value=result[0].TinChi
+                document.getElementById('sotiet1').value=result[0].SoTiet
+            }
+        })
+    }
+    function Sua()
+    {
+        var MaMon=document.getElementById('mamon1').value
+        var TenMon=document.getElementById('tenmon1').value
+        var TinChi=document.getElementById('tinchi1').value
+        var SoTiet=document.getElementById('sotiet1').value
+        
+        $.ajax({
+            type: "PUT",
+            url: "http://18.209.157.133:8080/MonHoc/"+MaMon, //Tên servlet
+            data: {"MaMon":MaMon,"TenMon":TenMon,"TinChi":TinChi,"SoTiet":SoTiet}
+        })
+    }
+    function Load2(data)
+    {
+        var row = document.getElementById("Mess")
+        row.innerHTML = null;
+        row.innerHTML="Bạn có chắc muốn xóa môn học "+ data;
+        var row1 = document.getElementById("button")
+        row1.innerHTML = null;
+        row1.innerHTML = `<button type="button" class="btn btn-danger"
+                                                        data-bs-dismiss="modal">Không</button>
+                          <button type="button" class="btn btn-primary" onclick="Xoa('`+data+`')" data-bs-dismiss="modal">Xác nhận</button>`
+
+    }
+    function Xoa(data)
+    {
+        console.log(data);
+        $.ajax({
+            type: "Delete",
+            url: "http://18.209.157.133:8080/monhoc/"+data, //Tên servlet
+        })
+    }
+</script>
 
 </html>
