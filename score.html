@@ -25,7 +25,7 @@
                 <button type="button" class="btn text-white btn__header">
                     <i class='bx bx-list-ul'></i>
                 </button>
-                <button type="button" class="btn text-white btn__header">
+                <button type="button" class="btn text-white btn__header"  onclick="Logout()">
                     <i class='bx bx-log-in-circle align-middle'></i>
                     <span>Logout</span>
                 </button>
@@ -41,7 +41,7 @@
                         <img class="user-info__logo" src="/assets/img/user-logo.png" alt="user-logo">
                     </div>
                     <div class="col-7 align-self-center ">
-                        <div class="row-6">
+                        <div class="row-6" id="HI">
                             Hi! Admin
                         </div>
                         <div class="row-6">
@@ -53,40 +53,19 @@
                     MENU
                 </div>
                 <div class="list-group ">
-                    <a href="#" class="list-group-item list-group-item-action menu__item">
+                    <a href="student.html" class="list-group-item list-group-item-action menu__item">
                         <i class='bx bx-home-alt'></i>
-                        Trang Chủ
+                        Sinh Viên
                     </a>
-
-                    <button href="#" class="menu__student list-group-item list-group-item-action menu__item">
-                        <div>
-                            <i class='bx bx-user-circle'></i>
-                            Sinh Viên
-                        </div>
-                        <ul class="d-none menu-student__list p-0">
-                            <a href="#" class="text-white d-block text-decoration-none p-2 mt-2">
-                                <li>
-                                    <i class='bx bx-info-circle'></i>
-                                    Thông tin sinh viên
-                                </li>
-                            </a>
-                            <a href="#" class="text-white d-block text-decoration-none p-2">
-                                <li>
-                                    <i class='bx bx-book-content'></i>
-                                    Điểm số
-                                </li>
-                            </a>
-                        </ul>
-                    </button>
-                    <a href="#" class="list-group-item list-group-item-action menu__item">
+                    <a href="subject.html" class="list-group-item list-group-item-action menu__item">
                         <i class='bx bxs-book'></i>
                         Môn Học
                     </a>
-                    <a href="#" class="list-group-item list-group-item-action menu__item">
+                    <a href="class.html" class="list-group-item list-group-item-action menu__item">
                         <i class='bx bxs-graduation'></i>
                         Lớp Học
                     </a>
-                    <a href="#" class="list-group-item list-group-item-action menu__item">
+                    <a href="teacher.html" class="list-group-item list-group-item-action menu__item">
                         <i class='bx bx-user-plus'></i>
                         Giảng Viên
                     </a>
@@ -98,23 +77,23 @@
             </div>
             <!-- END MENU -->
 
-            <!-- STUDENT SCORE -->
+            <!-- TEACHER INFORMATION -->
             <div class="col-10 px-0 position-relative">
                 <div class="header-name text-black fw-bold fs-5 p-2">
-                    <i class='bx bx-category-alt' style='color:#0096ff'></i>
-                    ĐIỂM SỐ SINH VIÊN
+                    <i class='bx bx-error-circle' style='color:#0096ff'></i>
+                    THÔNG TIN GIẢNG VIÊN
                 </div>
 
                 <div class="my-4 mx-3 d-flex justify-content-between">
                     <!-- Search -->
                     <div class="input-group mb-3 search-sub">
                         <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">Mã sinh viên</button>
+                            aria-expanded="true">Mã giảng viên</button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Mã sinh viên</a></li>
-                            <li><a class="dropdown-item" href="#">Tên sinh viên</a></li>
+                            <li><a class="dropdown-item" href="#">Mã giảng viên</a></li>
+                            <li><a class="dropdown-item" href="#">Tên giảng viên</a></li>
                             <li><a class="dropdown-item" href="#">Mã lớp</a></li>
-                            <li><a class="dropdown-item" href="#">Mã môn</a></li>
+                            <li><a class="dropdown-item" href="#">Quê quán</a></li>
                         </ul>
                         <input type="text" class="form-control" aria-label="Text input with dropdown button"
                             placeholder="Nhập thông tin">
@@ -124,8 +103,137 @@
 
                     <!-- Export File -->
                     <div class="export-file">
-                        <button type="button" class="btn btn-primary"><i class='bx bx-plus bx-tada' ></i> Thêm </button>
-                        <button type="button" class="btn btn-danger"><i class='bx bxs-file-pdf bx-flip-horizontal bx-tada' ></i> Xuất PDF</button>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#add-modal"><i class='bx bx-plus bx-tada' ></i> Nhập điểm </button>
+                        <!-- ADD Modal -->
+                        <div class="modal fade" id="add-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-black" id="exampleModalLabel">Nhập điểm</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body text-black">
+                                        <div>
+                                            <div class="mb-3">
+                                                <label for="sv_mssv" class="form-label">Mã sinh viên</label>
+                                                <input type="text" class="form-control" id="mssv" disabled>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="sv_name" class="form-label">Họ và tên</label>
+                                                <input type="text" class="form-control" id="name" disabled>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="sv_class" class="form-label">Điểm chuyên cần</label>
+                                                <input type="text" class="form-control" id="chuyencan" >
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="sv_name" class="form-label">Điểm quá trình</label>
+                                                <input type="text" class="form-control" id="quatrinh">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="sv_class" class="form-label">Điểm cuối kỳ</label>
+                                                <input type="text" class="form-control" id="cuoiki">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger"
+                                                    data-bs-dismiss="modal">Thoát</button>
+                                                <button type="submit" class="btn btn-primary" onclick="Them()" data-bs-dismiss="modal">Lưu</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ////////////////////////////////////////////////// -->
+                        <div class="modal fade text-start" id="edit-modal" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title text-black" id="exampleModalLabel">Cập nhật
+                                                        Sinh
+                                                        Viên</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body text-black">
+                                                    <div>
+                                                        <div class="mb-3">
+                                                            <label for="sv_mssv" class="form-label">Mã Giảng Viên</label>
+                                                            <input type="text" class="form-control" disabled id="sv_mssv1">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="sv_name" class="form-label">Họ và tên</label>
+                                                            <input type="text" class="form-control" id="sv_name1">
+                                                        </div>
+                                                        <div class="d-flex my-3">
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="flexRadioDefault" id="sv_boy1" checked>
+                                                                <label class="form-check-label" for="sv_boy">
+                                                                    Nam
+                                                                </label>
+                                                            </div>
+                                                            <div class="form-check ms-3">
+                                                                <input class="form-check-input" type="radio"
+                                                                    name="flexRadioDefault" id="sv_girl1">
+                                                                <label class="form-check-label" for="sv_girl">
+                                                                    Nữ
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="sv_birth-day" class="form-label">Ngày
+                                                                sinh</label>
+                                                            <input type="date" class="form-control" id="sv_birth-day1">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="sv_hometown" class="form-label">Quê quán</label>
+                                                            <input type="text" class="form-control" id="sv_hometown1">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="sv_class" class="form-label">Lớp</label>
+                                                            <input type="text" class="form-control" id="sv_class1">
+                                                        </div>
+
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger"
+                                                                data-bs-dismiss="modal">Thoát</button>
+                                                            <button onclick="Sua()" class="btn btn-primary" data-bs-dismiss="modal">Lưu</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                         </div>
+                        <!--///////////////////////////////////////////////////////////////////////// -->
+                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+                                        data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title text-black" id="staticBackdropLabel">Xóa dữ liệu</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body text-start text-black" id="Mess">
+
+                                                </div>
+                                                <div class="modal-footer" id="button">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                         </div>
+                         <!--///////////////////////////////////////////////////////////////////////// -->
+                        <button type="button" class="btn btn-danger" onclick="LoadData()"><i class='bx bxs-file-pdf bx-flip-horizontal bx-tada' ></i>Loaddata</button>
+                    
                     </div>
                     <!-- End Export File -->
                 </div>
@@ -137,65 +245,14 @@
                             <th scope="col">ID</th>
                             <th scope="col">Mã sinh viên</th>
                             <th scope="col">Họ và tên</th>
-                            <th scope="col">Mã Lớp</th>
-                            <th scope="col">Mã môn</th>
-                            <th scope="col">Điểm giữa kì</th>
-                            <th scope="col">Điểm cuối kì</th>
+                            <th scope="col">Chuyên cần</th>
+                            <th scope="col">Quá trình</th>
+                            <th scope="col">Cuối kì</th>
+                            <th scope="col">Hành động</th>
                           </tr>
                         </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>19110441</td>
-                            <td>Trương Ngọc Phương</td>
-                            <td>191101B</td>
-                            <td>ABCXYZ</td>
-                            <td>11</td>
-                            <td>11</td>
-                            <td class="text-center">
-                                <button type="submit" class="btn btn-outline-danger py-1">Sửa</button>
-                                <button type="submit" class="btn btn-outline-warning py-1">Xóa</button>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">2</th>
-                            <td>19110441</td>
-                            <td>Trương Ngọc Phương</td>
-                            <td>191101B</td>
-                            <td>ABCXYZ</td>
-                            <td>11</td>
-                            <td>11</td>
-                            <td class="text-center">
-                                <button type="submit" class="btn btn-outline-danger py-1">Sửa</button>
-                                <button type="submit" class="btn btn-outline-warning py-1">Xóa</button>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">3</th>
-                            <td>19110441</td>
-                            <td>Trương Ngọc Phương</td>
-                            <td>191101B</td>
-                            <td>ABCXYZ</td>
-                            <td>11</td>
-                            <td>11</td>
-                            <td class="text-center">
-                                <button type="submit" class="btn btn-outline-danger py-1">Sửa</button>
-                                <button type="submit" class="btn btn-outline-warning py-1">Xóa</button>
-                            </td>
-                          </tr>
-                          <tr>
-                            <th scope="row">4</th>
-                            <td>19110441</td>
-                            <td>Trương Ngọc Phương</td>
-                            <td>191101B</td>
-                            <td>ABCXYZ</td>
-                            <td>11</td>
-                            <td>11</td>
-                            <td class="text-center">
-                                <button type="submit" class="btn btn-outline-danger py-1">Sửa</button>
-                                <button type="submit" class="btn btn-outline-warning py-1">Xóa</button>
-                            </td>
-                          </tr>
+                        <tbody id="ROW1">
+                          
                         </tbody>
                       </table>
                 </div>
@@ -220,7 +277,7 @@
                 </footer>
                 <!-- END FOOTER -->
             </div>
-            <!-- END STUDENT SCORE -->
+            <!-- END TEACHER INFORMATION -->
 
             
 
@@ -242,5 +299,111 @@
     crossorigin="anonymous"></script>
 <script src="https://unpkg.com/boxicons@2.0.9/dist/boxicons.js"></script>
 <script src="/assets/js/app.js"></script>
+<script>
+    var allcookies = document.cookie;
+    cookiearray = allcookies.split(';');
+    var value = cookiearray[0].split('=')[1];
+    console.log(value)
+    //#############################################################
+    var data1
+    var data2
+    function GomMang(data)
+    {
+        for(var i in data1)
+        {
+            for(var j in data2)
+            {
+                if(data1[i].MaSV==data2[j].MaSV)
+                {
+                    data.push({"MaSV":data1[i].MaSV,"TenSV":data1[i].TenSV,"ChuyenCan":data2[j].DiemChuyenCan,"QuaTrinh":data2[j].DiemGiuaKi,"Cuoiki":data2[j].DiemCuoiKi})
+                }
+                else
+                {
+                    data.push({"MaSV":data1[i].MaSV,"TenSV":data1[i].TenSV,"ChuyenCan":'',"QuaTrinh":'',"Cuoiki":''})
+                }
+            }
+        }
+        console.log(data)
 
+        var row = document.getElementById("ROW1")
+                row.innerHTML = null;
+                var htmlString=``;
+                let total=data.length
+                for(let item in data)
+                {
+                    var total1=item-'-1'
+                    let total2=total-item-1
+                    htmlString+=`<tr>
+                                <th scope="row">`+(total1)+`</th>
+                                <td>`+data[total2].MaSV+`</td>
+                                <td>`+data[total2].TenSV+`</td>
+                                <td>`+data[total2].ChuyenCan+`</td>
+                                <td>`+data[total2].QuaTrinh+`</td>
+                                <td>`+data[total2].Cuoiki+`</td>
+                                <td class="text-center">
+                                <!-- Button EDIT-->
+                                    <button type="button" class="btn btn-outline-danger py-1"><i class='bx bx-pen'>Nhập điểm</i> 
+                                    </button>
+                                </td>
+                                </tr>`
+                }
+                            $('#ROW1').html(htmlString);
+        }
+    function LoadData()
+    {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const Lop = urlParams.get('Lop')
+        const Mon = urlParams.get('Mon')
+        console.log(Lop,Mon);
+        var data=[]
+        $.ajax({
+            type: "Get",
+            url: "http://44.200.53.234:8080/sinhvien/class/"+Lop, //Tên servlet
+            success:function (result){
+                data1=result
+                console.log(data1)
+                $.ajax({
+                    type: "Get",
+                    url: "http://44.200.53.234:8080/diem/"+Mon, //Tên servlet
+                    success:function (result1){
+                        data2=result1
+                        console.log(data2)
+                        GomMang(data)
+                    }
+                    })
+                }
+            })
+    }
+    function CheckLogin()
+    {
+        if(value==null||value=='')
+        {
+            window.location="Login.html"
+        }
+        else{
+            $.ajax({
+            type: "Get",
+            url: "http://44.199.232.184:8080/GiangVien/"+value, //Tên servlet
+            success:function (result){
+                console.log(result)
+                var row = document.getElementById("HI")
+                row.innerHTML = null;
+                row.innerHTML="Hi! "+result[0].MaGV
+                }
+            })
+        }
+        
+    }
+    $(document).ready(function(){
+        LoadData();
+        //CheckLogin()
+    })
+    
+    function Logout()
+    {
+        document.cookie = "name=;"
+        CheckLogin()
+    }
+</script>
 </html>

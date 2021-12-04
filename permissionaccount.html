@@ -316,59 +316,79 @@
 <script src="https://unpkg.com/boxicons@2.0.9/dist/boxicons.js"></script>
 <script src="/assets/js/app.js"></script>
 <script>
-    function LoadData()
+    var allcookies = document.cookie;
+    cookiearray = allcookies.split(';');
+    var value = cookiearray[0].split('=')[1];
+    console.log(value)
+    //#############################################################
+    var data1
+    var data2
+    function GomMang(data)
     {
-        $.ajax({
-            type: "GET",
-            url: "http://18.208.199.114:8080/GiangVien/", //Tên servlet
-            success:function (result){
-                console.log(result)
-                        $.ajax({
-            type: "GET",
-            url: "http://18.208.199.114:8080/account/", //Tên servlet
-            success:function (result1){  
+        for(var i in data1)
+        {
+            for(var j in data2)
+            {
+                if(data1[i].MaGV==data2[j].User_Id)
+                {
+                    data.push({"MaGV":data1[i].MaGV,"TenGV":data1[i].TenGV,"NgaySinh":data1[i].NgaySinh,"MaKhoa":data1[i].MaKhoa,"Role":data2[j].Role1})
+                    console.log(data)
+                }
+            }
+        }
+
                 var row = document.getElementById("ROW1")
                 row.innerHTML = null;
                 var htmlString=``;
-                let total=result.length
-                let check1=[]
-                for(let item1 in result1)
+                let total=data.length
+                for(let item in data)
                 {
-                    check1[item1]=0
-                    for(let item in result)
-                {
-                    if(result[item].MaGV==result1[item1].MaGV)
-                    check1[item]=check1[item]-'-1'
-                    console.log
-                    if(check1[item]>1)
                     var total1=item-'-1'
                     let total2=total-item-1
                 htmlString+=`<tr>
-                                <th scope="row">`+`1`+`</th>
-                                <td>`+result[item1].MaGV+`</td>
-                                <td>`+result[item1].TenGV+`</td>
-                                <td>`+result[item1].NgaySinh+`</td>
-                                <td>`+result[item1].MaKhoa+`</td>
-                                <td class="text-center">
-                                    <!-- Button EDIT-->
-                                    <button type="button" class="btn btn-outline-danger py-1" ><i class='bx bx-pen'></i> Cấp quyền
-                                    </button>
-                                </td>
-                            </tr>`
+                                <th scope="row">`+(total1)+`</th>
+                                <td>`+data[total2].MaGV+`</td>
+                                <td>`+data[total2].TenGV+`</td>
+                                <td>`+data[total2].NgaySinh+`</td>
+                                <td>`+data[total2].MaKhoa+`</td>`
+                                //console.log(data[total2].Role)
+                                if(data[total2].Role!='admin')
+                                {
+                                    htmlString+=`<td class="text-center">
+                                                    <!-- Button EDIT-->
+                                                    <button type="button" class="btn btn-outline-danger py-1" onclick="CapQuyen('`+data[total2].MaGV+`')"><i class='bx bx-pen'>Cấp quyền</i> 
+                                                    </button>
+                                                 </td>`
+                                }
+                            `</tr>`
                             $('#ROW1').html(htmlString);
                         }
+            }
+    function LoadData()
+    {
+        var data=[]
+        $.ajax({
+            type: "GET",
+            url: "http://44.199.232.184:8080/GiangVien/", //Tên servlet
+            success:function (result){
+                data1=result
+                console.log(data1)
+                $.ajax({
+                    type: "GET",
+                    url: "http://44.199.232.184:8080/account/", //Tên servlet
+                    success:function (result1){
+                    data2=result1;  
+                    console.log(data2)
+                    GomMang(data)
                 }
-             }
             })
-        }
+            }
         })
+            
+            
     }
     function CheckLogin()
     {
-        var allcookies = document.cookie;
-        cookiearray = allcookies.split(';');
-        var value = cookiearray[0].split('=')[1];
-        console.log(value)
         if(value==null||value=='')
         {
             window.location="Login.html"
@@ -376,7 +396,7 @@
         else{
             $.ajax({
             type: "Get",
-            url: "http://18.208.199.114:8080/GiangVien/"+value, //Tên servlet
+            url: "http://44.199.232.184:8080/GiangVien/"+value, //Tên servlet
             success:function (result){
                 console.log(result)
                 var row = document.getElementById("HI")
@@ -388,10 +408,17 @@
         
     }
     $(document).ready(function(){
-        LoadData()
+        LoadData();
         CheckLogin()
     })
-
+    function CapQuyen(data01)
+    {
+        $.ajax({
+            type: "Put",
+            url: "http://44.199.232.184:8080/account/"+data01+"/admin", //Tên servlet
+            success:function (result){}
+        })
+    }
     function Logout()
     {
         document.cookie = "name=;"

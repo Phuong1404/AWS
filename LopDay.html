@@ -53,55 +53,28 @@
                     MENU
                 </div>
                 <div class="list-group ">
-                    <a href="student.html" class="list-group-item list-group-item-action menu__item">
-                        <i class='bx bx-home-alt'></i>
-                        Sinh Viên
-                    </a>
-                    <a href="subject.html" class="list-group-item list-group-item-action menu__item">
-                        <i class='bx bxs-book'></i>
-                        Môn Học
-                    </a>
-                    <a href="class.html" class="list-group-item list-group-item-action menu__item">
-                        <i class='bx bxs-graduation'></i>
-                        Lớp Học
-                    </a>
-                    <a href="teacher.html" class="list-group-item list-group-item-action menu__item">
+                    <a href="" class="list-group-item list-group-item-action menu__item">
                         <i class='bx bx-user-plus'></i>
-                        Giảng Viên
+                        Lớp dạy
                     </a>
-                    <a href="ChangePass.html" class="list-group-item list-group-item-action menu__item">
+                    <a href="#" class="list-group-item list-group-item-action menu__item">
                         <i class='bx bx-code'></i>
                         Đổi mật khẩu
                     </a>
                 </div>
             </div>
-            <!-- CLASS -->
+            <!-- END MENU -->
+
+            <!-- TEACHER INFORMATION -->
             <div class="col-10 px-0 position-relative">
                 <div class="header-name text-black fw-bold fs-5 p-2">
-                    <i class='bx bxs-graduation' style='color:#0096ff'></i>
-                    ĐỔI MẬT KHẨU
+                    <i class='bx bx-error-circle' style='color:#0096ff'></i>
+                    THÔNG TIN LỚP DẠY
                 </div>
-
                 <div class="table-responsive mx-3">
-                    <div class="modal-body text-black"></div>
-                    <div>
-                        <div class="mb-3">
-                            <label for="sv_mssv" class="form-label">Mã Khoa</label>
-                            <input type="password" class="form-control" id="Cu" placeholder="Mật Khẩu cũ">
-                        </div>
-                        <div class="mb-3">
-                            <label for="sv_name" class="form-label">Tên Khoa</label>
-                            <input type="password" class="form-control" id="Moi" placeholder="Mật khẩu mới">
-                        </div>
-                        <div class="mb-3">
-                            <label for="sv_name" class="form-label">Tên Khoa</label>
-                            <input type="password" class="form-control" id="Lai" placeholder="Nhập lại">
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-primary" onclick="Them()" >Lưu</button>
-                        </div>
-                    </div>
-                </div>
+                    <ul id="ROW1">
+                    </ul>
+                    
                 </div>
 
                  <!-- FOOTER -->
@@ -110,11 +83,16 @@
                 </footer>
                 <!-- END FOOTER -->
             </div>
-            <!-- END CLASS -->
+            <!-- END TEACHER INFORMATION -->
 
             
 
         </div>
+
+
+
+
+
     </div>
 </body>
 
@@ -127,53 +105,66 @@
     crossorigin="anonymous"></script>
 <script src="https://unpkg.com/boxicons@2.0.9/dist/boxicons.js"></script>
 <script src="/assets/js/app.js"></script>
-
 <script>
-    var getUrlParameter = function getUrlParameter(sParam) {
-    var sPageURL = window.location.search.substring(1),
-        sURLVariables = sPageURL.split('&'),
-        sParameterName,
-        i;
-
-    for (i = 0; i < sURLVariables.length; i++) {
-        sParameterName = sURLVariables[i].split('=');
-
-        if (sParameterName[0] === sParam) {
-            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
-        }
-    }
-    return false;
-};
-    function Them()
+    var allcookies = document.cookie;
+    cookiearray = allcookies.split(';');
+    var value = cookiearray[0].split('=')[1];
+    console.log(value)
+    //#############################################################
+    function LoadData()
     {
-        var a =document.getElementById("Cu").value
-        var b =document.getElementById("Moi").value
-        var c =document.getElementById("Lai").value
-        var allcookies = document.cookie;
-        cookiearray = allcookies.split(';');
-        var value = cookiearray[0].split('=')[1];
-        console.v
         $.ajax({
             type: "GET",
-            url: "http://18.208.199.114:8080/account/"+value+"/"+a, //Tên servlet
+            url: "http://44.200.53.234:8080/phancong/GV005", //Tên servlet
             success:function (result){
                 console.log(result)
-                if(result.length>0)
+                var row = document.getElementById("ROW1")
+                row.innerHTML = null;
+                var htmlString=``;
+                for(let it in result)
                 {
-                    $.ajax({
-                    type: "PUT",
-                    url: "http://18.208.199.114:8080/account/change/"+value+"/"+b          
-                })
-                const theOneFunc = delay => {
-                    document.cookie = "name=;"
-                window.location="Login.html"
-};
-setTimeout(theOneFunc, 3 * 1000, 4);
+                    htmlString+=`<li><a href="score.html?Lop=`+result[it].MaLop+`&Mon=`+result[it].MaMon+`" style="color:black">Lớp `+result[it].MaLop+` Môn `+result[it].MaMon+`</a></li>`
                 }
-                
-                
+                row.innerHTML=htmlString;
             }
+        })        
+    }
+    function CheckLogin()
+    {
+        if(value==null||value=='')
+        {
+            window.location="Login.html"
+        }
+        else{
+            $.ajax({
+            type: "Get",
+            url: "http://44.200.53.234:8080/GiangVien/"+value, //Tên servlet
+            success:function (result){
+                console.log(result)
+                var row = document.getElementById("HI")
+                row.innerHTML = null;
+                row.innerHTML="Hi! "+result[0].MaGV
+                }
+            })
+        }
+        
+    }
+    $(document).ready(function(){
+        LoadData();
+        //CheckLogin()
+    })
+    function CapQuyen(data01)
+    {
+        $.ajax({
+            type: "Put",
+            url: "http://44.200.53.234:8080/account/"+data01+"/admin", //Tên servlet
+            success:function (result){}
         })
+    }
+    function Logout()
+    {
+        document.cookie = "name=;"
+        CheckLogin()
     }
 </script>
 </html>
