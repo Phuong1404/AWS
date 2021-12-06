@@ -9,6 +9,8 @@ router.post('/',SinhVienController.createNewRecord);
 
 router.get('/:id',SinhVienController.GetOneRecord);
 
+router.get('/class/:id',SinhVienController.GetOneRecord);
+
 router.put('/:id',SinhVienController.updateRecord);
 
 router.delete('/:id',SinhVienController.deleteRecord)

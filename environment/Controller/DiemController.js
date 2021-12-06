@@ -21,6 +21,15 @@ exports.GetOneRecord= (req, res)=>{
         res.json(result.Items);
     });
 }
+
+exports.GetOneRecord1= (req, res)=>{
+    const ID=req.params.mamon;
+    DiemModel.GetById1(ID).then(result =>{
+        console.log(result);
+        res.json(result.Items);
+    });
+}
+
 exports.updateRecord=(req, res)=>{
     let DiemReqData=req.body
     const ID=req.params.mamon;

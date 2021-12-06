@@ -24,30 +24,30 @@ async function Get()
 }
 async function Create(Data)
 {
-    let LopData = {
-        MaMon: Data.MaMon,
-       MaLop:Data.MaLop,
-       MaGV:Data.MaGV
+    let DiemData = {
+       MaGV:Data.MaGV,
+       MaMon:Data.MaMon,
+       MaLop:Data.MaLop
     }
-    let sqsLopData = {
+    let sqsDiemData = {
         MessageAttributes: {
+          "MaGV": {
+            DataType: "String",
+            StringValue: DiemData.MaGV
+          },
           "MaMon": {
             DataType: "String",
-            StringValue: LopData.MaMon
+            StringValue: DiemData.MaMon
           },
           "MaLop": {
             DataType: "String",
-            StringValue: LopData.MaLop
-          },
-          "MaGV": {
-            DataType: "String",
-            StringValue: LopData.MaGV
+            StringValue: DiemData.MaLop
           }
         },
-        MessageBody: JSON.stringify(LopData),
-        QueueUrl: 'https://sqs.us-east-1.amazonaws.com/588509624082/InsertLop'
+        MessageBody: JSON.stringify(DiemData),
+        QueueUrl: 'https://sqs.us-east-1.amazonaws.com/588509624082/InsertPhanCong'
     };
-    let sendSqsMessage = sqs.sendMessage(sqsLopData).promise();
+    let sendSqsMessage = sqs.sendMessage(sqsDiemData).promise();
     sendSqsMessage.then((data) => {
         console.log(`OrdersSvc | SUCCESS: ${data.MessageId}`);
         return
@@ -55,31 +55,95 @@ async function Create(Data)
         console.log(`OrdersSvc | ERROR: ${err}`);
     });
 }
-async function Delete(MaMon,MaLop,MaGV){
-    let LopData = {
-        MaMon: MaMon,
-       MaLop:MaLop,
-       MaGV:MaGV
+async function GetById(ID,ID1,ID2)
+{
+  var params = {
+  TableName: 'PhanCongs',
+  FilterExpression: '#name = :value AND #malop = :valu AND #mamon = :val',
+  ExpressionAttributeValues: { ':value': ID,':valu':ID1,':val':ID2 },
+  ExpressionAttributeNames: { '#name': 'MaGV','#malop':"MaLop",'#mamon':"MaMon" }
+}
+  try {
+    const data = await docClient.scan(params).promise()
+    return data
+  } catch (err) {
+    return err
+  }
+}
+async function GetByMaSV(ID,ID1,ID2)
+{
+  var params = {
+  TableName: 'PhanCongs',
+  FilterExpression: '#name = :value',
+  ExpressionAttributeValues: { ':value': ID },
+  ExpressionAttributeNames: { '#name': 'MaGV' }
+}
+  try {
+    const data = await docClient.scan(params).promise()
+    return data
+  } catch (err) {
+    return err
+  }
+}
+async function Delete(MaGV,MaMon,MaLop)
+{
+    let DiemData = {
+       MaGV:MaGV,
+       MaMon:MaMon,
+       MaLop:MaLop
     }
-    let sqsLopData = {
+    let sqsDiemData = {
         MessageAttributes: {
+          "MaGV": {
+            DataType: "String",
+            StringValue: DiemData.MaGV
+          },
           "MaMon": {
             DataType: "String",
-            StringValue: LopData.MaMon
+            StringValue: DiemData.MaMon
           },
           "MaLop": {
             DataType: "String",
-            StringValue: LopData.MaLop
-          },
-          "MaGV": {
-            DataType: "String",
-            StringValue: LopData.MaGV
+            StringValue: DiemData.MaLop
           }
         },
-        MessageBody: JSON.stringify(LopData),
-        QueueUrl: 'https://sqs.us-east-1.amazonaws.com/588509624082/InsertLop'
+        MessageBody: JSON.stringify(DiemData),
+        QueueUrl: 'https://sqs.us-east-1.amazonaws.com/588509624082/DeletePhanCong'
     };
-    let sendSqsMessage = sqs.sendMessage(sqsLopData).promise();
+    let sendSqsMessage = sqs.sendMessage(sqsDiemData).promise();
+    sendSqsMessage.then((data) => {
+        console.log(`OrdersSvc | SUCCESS: ${data.MessageId}`);
+        return
+    }).catch((err) => {
+        console.log(`OrdersSvc | ERROR: ${err}`);
+    });
+}
+async function Update(MaGV,MaMon,MaLop)
+{
+    let DiemData = {
+       MaGV:MaGV,
+       MaMon:MaMon,
+       MaLop:MaLop
+    }
+    let sqsDiemData = {
+        MessageAttributes: {
+          "MaGV": {
+            DataType: "String",
+            StringValue: DiemData.MaGV
+          },
+          "MaMon": {
+            DataType: "String",
+            StringValue: DiemData.MaMon
+          },
+          "MaLop": {
+            DataType: "String",
+            StringValue: DiemData.MaLop
+          }
+        },
+        MessageBody: JSON.stringify(DiemData),
+        QueueUrl: 'https://sqs.us-east-1.amazonaws.com/588509624082/UpdatePhanCong'
+    };
+    let sendSqsMessage = sqs.sendMessage(sqsDiemData).promise();
     sendSqsMessage.then((data) => {
         console.log(`OrdersSvc | SUCCESS: ${data.MessageId}`);
         return
@@ -90,5 +154,8 @@ async function Delete(MaMon,MaLop,MaGV){
 module.exports={
     Get:Get,
     Create:Create,
-    Delete:Delete
+    GetById:GetById,
+    Update:Update,
+    Delete:Delete,
+    GetByMaSV:GetByMaSV
 }

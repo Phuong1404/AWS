@@ -1,23 +1,50 @@
-const PhanCongModel=require('../Model/PhanCongModel')
+const DiemModel=require('../Model/PhanCongModel')
 exports.GetAllList= (req, res)=> {
-    PhanCongModel.Get().then(result =>{
+    DiemModel.Get().then(result =>{
         console.log(result);
         res.json(result.Items);
     })
 }
 exports.createNewRecord = (req, res) =>{
-    let PhanCongReqData=req.body;
-    console.log(PhanCongReqData)
-    PhanCongModel.Create(PhanCongReqData).then(result =>{
+    let DiemReqData=req.body;
+    console.log(DiemReqData)
+    DiemModel.Create(DiemReqData).then(result =>{
         console.log(result);
         res.status(201).json(result);
     })
 }
+exports.GetOneRecord= (req, res)=>{
+    const MaMon=req.params.mamon;
+    const MaGV=req.params.magv;
+    const MaLop=req.params.malop;
+    DiemModel.GetById(MaGV,MaLop,MaMon).then(result =>{
+        console.log(result);
+        res.json(result.Items);
+    });
+}
+
+exports.GetOneRecord1= (req, res)=>{
+    const MaGV=req.params.magv;
+    DiemModel.GetByMaSV(MaGV).then(result =>{
+        console.log(result);
+        res.json(result.Items);
+    });
+}
+
+exports.updateRecord=(req, res)=>{
+    const MaMon=req.params.mamon;
+    const MaGV=req.params.magv;
+    const MaLop=req.params.malop;
+    DiemModel.Update(MaGV,MaMon,MaLop).then(result =>{
+        console.log(result);
+        res.status(200).json(result);
+    })
+}
 exports.deleteRecord=(req, res)=>{
-    const ID=req.params.mamon;
-    const ID1=req.params.malop;
-    const ID2=req.params.magv;
-    PhanCongModel.Delete(ID,ID1,ID2).then(result =>{
+    const MaMon=req.params.mamon;
+    const MaGV=req.params.magv;
+    const MaLop=req.params.malop;
+    DiemModel.Delete(MaGV,MaMon,MaLop).then(result =>{
         console.log(result);
         res.status(200).json(result);
     })

@@ -80,6 +80,24 @@ async function GetById(ID,ID1)
     return err
   }
 }
+
+
+async function GetById1(ID)
+{
+  var params = {
+  TableName: 'Diems',
+  FilterExpression: '#name = :value' ,
+  ExpressionAttributeValues: { ':value': ID },
+  ExpressionAttributeNames: { '#name': 'MaMon' }
+}
+  try {
+    const data = await docClient.scan(params).promise()
+    return data
+  } catch (err) {
+    return err
+  }
+}
+
 async function Update(ID,ID1,Data){
     let DiemData = {
         DiemChuyenCan:Data.DiemChuyenCan,
@@ -154,5 +172,6 @@ module.exports={
     Create:Create,
     GetById:GetById,
     Update:Update,
-    Delete:Delete
+    Delete:Delete,
+    GetById1:GetById1
 }

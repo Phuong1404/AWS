@@ -27,7 +27,7 @@ async function Create(Data)
     let LopData = {
         'MaLop': Data.MaLop,
         'TenLop': Data.TenLop,
-        'MaLop':Data.MaLop
+        'MaKhoa':Data.MaKhoa
     }
     let sqsLopData = {
         MessageAttributes: {
@@ -39,9 +39,9 @@ async function Create(Data)
             DataType: "String",
             StringValue: LopData.TenLop
           },
-          "MaLop": {
+          "MaKhoa": {
             DataType: "String",
-            StringValue: LopData.MaLop
+            StringValue: LopData.MaKhoa
           }
         },
         MessageBody: JSON.stringify(LopData),
@@ -70,11 +70,11 @@ try {
     console.log(error);
   }
 }
-async function Update(ID,TenLop,MaLop){
+async function Update(ID,TenLop,MaKhoa){
     let LopData = {
         'MaLop': ID,
         'TenLop': TenLop,
-        'MaLop':MaLop
+        'MaKhoa':MaKhoa
     }
     let sqsLopData = {
         MessageAttributes: {
@@ -86,9 +86,9 @@ async function Update(ID,TenLop,MaLop){
             DataType: "String",
             StringValue: LopData.TenLop
           },
-          "MaLop": {
+          "MaKhoa": {
             DataType: "String",
-            StringValue: LopData.MaLop
+            StringValue: LopData.MaKhoa
           }
         },
         MessageBody: JSON.stringify(LopData),

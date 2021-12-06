@@ -20,6 +20,15 @@ exports.GetOneRecord= (req, res)=>{
         res.json(result.Items);
     });
 }
+
+exports.GetOneRecord= (req, res)=>{
+    const ID=req.params.id;
+    SinhVienModel.GetById1(ID).then(result =>{
+        console.log(result);
+        res.json(result.Items);
+    });
+}
+
 exports.updateRecord=(req, res)=>{
     let SinhVienReqData=req.body
     const ID=req.params.id;

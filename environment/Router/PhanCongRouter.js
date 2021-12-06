@@ -1,12 +1,18 @@
 const express = require("express")
 const router = express.Router()
 
-const PhanCongController=require('../Controller/PhanCongController');
+const DiemController=require('../Controller/PhanCongController');
 
-router.get('/',PhanCongController.GetAllList);
+router.get('/',DiemController.GetAllList);
 
-router.post('/',PhanCongController.createNewRecord);
+router.get('/:magv',DiemController.GetOneRecord1);
 
-router.delete('/:mamon/:malop/:magv',PhanCongController.deleteRecord)
+router.post('/',DiemController.createNewRecord);
+
+router.get('/:mamon/:magv/:malop',DiemController.GetOneRecord);
+
+router.put('/:mamon/:magv/:malop',DiemController.updateRecord);
+
+router.delete('/:mamon/:magv/:malop',DiemController.deleteRecord)
 
 module.exports = router;

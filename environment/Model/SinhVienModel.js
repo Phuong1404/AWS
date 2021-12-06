@@ -85,6 +85,23 @@ try {
     console.log(error);
   }
 }
+
+async function GetById1(ID)
+{
+  var params = {
+  TableName: 'SinhViens',
+  FilterExpression: '#name = :value',
+  ExpressionAttributeValues: { ':value': ID },
+  ExpressionAttributeNames: { '#name': 'MaLop' }
+}
+try {
+    const data = await docClient.scan(params).promise()
+    return data
+  } catch(error){
+    console.log(error);
+  }
+}
+
 async function Update(ID,Data){
     let SVData = {
         'MaSV': ID,
@@ -159,5 +176,6 @@ module.exports={
     Create:Create,
     GetById:GetById,
     Update:Update,
-    Delete:Delete
+    Delete:Delete,
+    GetById1:GetById1
 }
