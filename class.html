@@ -61,6 +61,10 @@
                         <i class='bx bxs-book'></i>
                         Môn Học
                     </a>
+                    <a href="Khoa.html" class="list-group-item list-group-item-action menu__item">
+                        <i class='bx bxs-graduation'></i>
+                        Khoa
+                    </a>
                     <a href="class.html" class="list-group-item list-group-item-action menu__item">
                         <i class='bx bxs-graduation'></i>
                         Lớp Học
@@ -68,6 +72,14 @@
                     <a href="teacher.html" class="list-group-item list-group-item-action menu__item">
                         <i class='bx bx-user-plus'></i>
                         Giảng Viên
+                    </a>
+                    <a href="PhanCong.html" class="list-group-item list-group-item-action menu__item">
+                        <i class='bx bx-user-plus'></i>
+                        Phân công
+                    </a>
+                    <a href="permissionaccount.html" class="list-group-item list-group-item-action menu__item">
+                        <i class='bx bx-user-plus'></i>
+                        Cấp quyền
                     </a>
                     <a href="ChangePass.html" class="list-group-item list-group-item-action menu__item">
                         <i class='bx bx-code'></i>
@@ -176,19 +188,6 @@
                 </div>
 
                 <div class="my-4 mx-3 d-flex justify-content-between">
-                    <!-- Search -->
-                    <div class="input-group mb-3 search-sub">
-                        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">Mã lớp học</button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Mã lớp học</a></li>
-                            <li><a class="dropdown-item" href="#">Tên lớp học</a></li>
-                        </ul>
-                        <input type="text" class="form-control" aria-label="Text input with dropdown button"
-                            placeholder="Nhập thông tin">
-                        <button type="submit" class="btn btn-primary"><i class='bx bx-search-alt'></i></button>
-                    </div>
-                    <!-- End Search -->
 
                     <!-- Export File -->
                     <div class="export-file">
@@ -218,19 +217,6 @@
                       </table>
                 </div>
 
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item disabled">
-                            <a class="page-link">Trang trước</a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Trang sau</a>
-                        </li>
-                    </ul>
-                </nav>
 
                  <!-- FOOTER -->
                  <footer class="footer py-3 mx-0 text-center bg-dark opacity-75">
@@ -265,7 +251,7 @@
     {
         $.ajax({
             type: "GET",
-            url: "http://18.209.157.133:8080/khoa", //Tên servlet
+            url: "http://44.192.57.204:8080/khoa", //Tên servlet
             success:function (result){
                 console.log(result)
                 var row = document.getElementById("Brand1")
@@ -312,7 +298,7 @@
     {
         $.ajax({
             type: "GET",
-            url: "http://18.209.157.133:8080/lop", //Tên servlet
+            url: "http://44.192.57.204:8080/lop", //Tên servlet
             success:function (result){
                 console.log(result)
                 var row = document.getElementById("row1")
@@ -350,7 +336,7 @@
         var b=document.getElementById("TenLop").value;
         $.ajax({
             type: "POST",
-            url: "http://18.209.157.133:8080/Lop", //Tên servlet
+            url: "http://44.192.57.204:8080/Lop", //Tên servlet
             data: {"MaLop":a,"TenLop":b,"MaKhoa":Khoa}
         })
     }
@@ -359,7 +345,7 @@
         var a=''
         $.ajax({
             type: "Get",
-            url: "http://18.209.157.133:8080/lop/"+data, //Tên servlet
+            url: "http://44.192.57.204:8080/lop/"+data, //Tên servlet
             success:function (result){
                 document.getElementById('MaLop1').value=''
                 document.getElementById('TenLop1').value=''
@@ -368,7 +354,7 @@
                 a=document.getElementById("Brand2").value=result[0].MaKhoa
                 $.ajax({
                     type: "GET",
-                    url: "http://18.209.157.133:8080/khoa", //Tên servlet
+                    url: "http://44.192.57.204:8080/khoa", //Tên servlet
                     success:function (result){
                     console.log(result)
                     var row = document.getElementById("Brand2")
@@ -394,7 +380,7 @@
         var b=document.getElementById("TenLop1").value;
         $.ajax({
             type: "PUT",
-            url: "http://18.209.157.133:8080/lop/"+a, //Tên servlet
+            url: "http://44.192.57.204:8080/lop/"+a, //Tên servlet
             data: {"TenLop":b,"MaKhoa":Khoa}
         })
     }
@@ -414,7 +400,7 @@
     {
         $.ajax({
             type: "Delete",
-            url: "http://18.209.157.133:8080/lop/"+data, //Tên servlet
+            url: "http://44.192.57.204:8080/lop/"+data, //Tên servlet
         })
     }
     function Logout()

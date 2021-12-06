@@ -57,7 +57,7 @@
                         <i class='bx bx-user-plus'></i>
                         Lớp dạy
                     </a>
-                    <a href="#" class="list-group-item list-group-item-action menu__item">
+                    <a href="ChangePass1.html" class="list-group-item list-group-item-action menu__item">
                         <i class='bx bx-code'></i>
                         Đổi mật khẩu
                     </a>
@@ -115,7 +115,7 @@
     {
         $.ajax({
             type: "GET",
-            url: "http://44.200.53.234:8080/phancong/GV005", //Tên servlet
+            url: "http://44.192.57.204:8080/phancong/GV005", //Tên servlet
             success:function (result){
                 console.log(result)
                 var row = document.getElementById("ROW1")
@@ -138,7 +138,7 @@
         else{
             $.ajax({
             type: "Get",
-            url: "http://44.200.53.234:8080/GiangVien/"+value, //Tên servlet
+            url: "http://44.192.57.204:8080/GiangVien/"+value, //Tên servlet
             success:function (result){
                 console.log(result)
                 var row = document.getElementById("HI")
@@ -151,13 +151,13 @@
     }
     $(document).ready(function(){
         LoadData();
-        //CheckLogin()
+        CheckLogin()
     })
     function CapQuyen(data01)
     {
         $.ajax({
             type: "Put",
-            url: "http://44.200.53.234:8080/account/"+data01+"/admin", //Tên servlet
+            url: "http://44.192.57.204:8080/account/"+data01+"/admin", //Tên servlet
             success:function (result){}
         })
     }

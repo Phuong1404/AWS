@@ -32,28 +32,31 @@
 
 				<div class="login100-form validate-form">
 					<span class="login100-form-title">
-						Member Login
+						Đăng nhập 
 					</span>
 
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" type="text" name="username" id="username" placeholder="UserName">
+					<div class="wrap-input100 validate-input" data-validate = "Cần phải điền tài khoản">
+						<input class="input100" type="text" name="username" id="username" placeholder="Tài khoản">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-envelope" aria-hidden="true"></i>
 						</span>
 					</div>
 
-					<div class="wrap-input100 validate-input" data-validate = "Password is required">
-						<input class="input100" type="password" name="pass" id="password" placeholder="PassWord">
+					<div class="wrap-input100 validate-input" data-validate = "Cần phải điền mật khẩu">
+						<input class="input100" type="password" name="pass" id="password" placeholder="Mật khẩu">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
 						</span>
 					</div>
-					
+					<div class="wrap-input5 validate-input" data-validate = "Password is required">
+						&nbsp;&nbsp;&nbsp;&nbsp;<input class="input5" type="radio" name="radiorole" id="admin">Admin &nbsp;&nbsp;&nbsp;&nbsp;
+						<input class="input5" type="radio" name="radiorole" id="GV">Giảng viên
+					</div>
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn" onclick="Login()">
-							Login
+							Đăng nhập
 						</button>
 					</div>
 
@@ -61,13 +64,13 @@
 						<span class="txt1">
 							Forgot
 						</span>
-						<a class="txt2" href="#">
+						<a class="txt2">
 							Username / Password?
 						</a>
 					</div>
 
 					<div class="text-center p-t-136">
-						<a class="txt2" href="#">
+						<a class="txt2">
 							Create your Account
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 						</a>
@@ -98,24 +101,40 @@
 	<script src="./assets/login/js/main.js"></script>
 
 	<script>
+		$(document).ready(function(){
+			document.getElementById("admin").checked=true
+    })
 		function Login()
 		{
 			var a=document.getElementById("username").value;
 			var b=document.getElementById("password").value;
+			var c=document.getElementById("admin").checked;
 			if(a!='' && b!='')
 			{
 			$.ajax({
             type: "GET",
-            url: "http://44.199.232.184:8080/account/"+a+"/"+b, //Tên servlet
+            url: "http://44.192.57.204:8080/account/"+a+"/"+b, //Tên servlet
             success:function (result){
 				if(result.length>0)
 				{
-					cookievalue = escape(result[0].User_Id) + ";";
-            		document.cookie = "name=" + cookievalue;
+					console.log(result[0].Role1)
+					if(result[0].Role1=='admin' && c==true)
+					{
+						cookievalue = escape(result[0].User_Id) + ";";
+            			document.cookie = "name=" + cookievalue;
 
-					var allcookies = document.cookie;
-               		cookiearray = allcookies.split(';');
-			   		window.location="student.html"
+						var allcookies = document.cookie;
+               			cookiearray = allcookies.split(';');
+			   			window.location="student.html"
+					}
+					else{
+						cookievalue = escape(result[0].User_Id) + ";";
+            			document.cookie = "name=" + cookievalue;
+
+						var allcookies = document.cookie;
+               			cookiearray = allcookies.split(';');
+			   			window.location="lopday.html"
+					}
 				}
 				else
 				{
