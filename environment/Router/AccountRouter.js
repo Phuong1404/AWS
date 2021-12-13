@@ -15,4 +15,6 @@ router.put('/change/:id/:id1',GiangVienController.updateRecord1);
 
 router.delete('/:id',GiangVienController.deleteRecord)
 
+
+
 module.exports = router;

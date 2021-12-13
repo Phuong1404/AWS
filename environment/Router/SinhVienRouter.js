@@ -7,9 +7,9 @@ router.get('/',SinhVienController.GetAllList);
 
 router.post('/',SinhVienController.createNewRecord);
 
-router.get('/:id',SinhVienController.GetOneRecord);
+router.get('/:id',SinhVienController.GetOneRecord);//
 
-router.get('/class/:id',SinhVienController.GetOneRecord);
+router.get('/class/:id',SinhVienController.GetOneRecord1);//
 
 router.put('/:id',SinhVienController.updateRecord);
 

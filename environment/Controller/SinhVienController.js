@@ -21,7 +21,7 @@ exports.GetOneRecord= (req, res)=>{
     });
 }
 
-exports.GetOneRecord= (req, res)=>{
+exports.GetOneRecord1= (req, res)=>{
     const ID=req.params.id;
     SinhVienModel.GetById1(ID).then(result =>{
         console.log(result);
