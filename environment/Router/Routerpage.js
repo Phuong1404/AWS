@@ -17,7 +17,7 @@ router.get('/changepass',function(req,res){
     console.log(__dirname)
     res.sendFile(__dirname +'/Client/ChangePass.html')
 })
-router.get('/changepass',function(req,res){
+router.get('/changepass1',function(req,res){
     console.log(__dirname)
     res.sendFile(__dirname +'/Client/ChangePass1.html')
 })
