@@ -115,7 +115,7 @@
     {
         $.ajax({
             type: "GET",
-            url: "http://54.164.238.68:8080/phancong/GV005", //Tên servlet
+            url: "http://54.164.238.68:8080/phancong/"+value, //Tên servlet
             success:function (result){
                 console.log(result)
                 var row = document.getElementById("ROW1")
