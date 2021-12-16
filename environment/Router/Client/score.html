@@ -258,6 +258,10 @@
     }
     function CheckLogin()
     {
+       var allcookies = document.cookie;
+        cookiearray = allcookies.split(';');
+        var value = cookiearray[0].split('=')[1];
+        console.log(value)
         if(value==null||value=='')
         {
             window.location="/login"
